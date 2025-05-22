@@ -58,8 +58,22 @@ def merge_sort(numbers):
     return sorted_numbers
 
 
+def insertion_sort(numbers):
+    for round in range(len(numbers)-1):
+        new = numbers[round+1]
+        old_idx = round
+
+        # 在尚未比到頭(old_idx >= 0) 且 new 還小於時 繼續
+        while old_idx >= 0 and new <= numbers[old_idx]:
+            numbers[old_idx + 1] = numbers[old_idx]  # 不是交換
+            old_idx -= 1
+        numbers[old_idx+1] = new
+
+    sorted_numbers = numbers
+    return sorted_numbers
+
+
 if __name__ == '__main__':
-    # numbers = [40, 30, 60, 50, 20]
-    # selection_sort(numbers)
-    result = merge([10, 30, 60, 80], [40, 50, 70])
+
+    result = insertion_sort([40, 30, 60, 50, 20])
     print(result)
