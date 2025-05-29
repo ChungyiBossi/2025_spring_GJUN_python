@@ -1,5 +1,3 @@
-from bs4 import BeautifulSoup
-html_doc = """
 <html>
     <head><title>The Dormouse's story</title></head>
     <body>
@@ -12,11 +10,3 @@ html_doc = """
         </p>
 
         <p class="story">...</p>
-"""
-soup = BeautifulSoup(html_doc, 'html.parser')
-# print(soup.prettify())
-# print("Find Tag <b>: ", soup.b)
-# print("Find Tag <a>: ", soup.a)
-# print("Find Tag <a> string: ", soup.a.string)
-
-print("Find All <a>: \n", soup.find_all('a'))
