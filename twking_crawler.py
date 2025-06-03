@@ -1,3 +1,4 @@
+from collections import Counter
 from pprint import pprint
 from bs4 import BeautifulSoup
 import requests
@@ -25,3 +26,32 @@ for booktop in booktops:
         print(top['href'], top.string.strip())  # 連結, 小說名稱
 
 pprint(booktop_data)
+
+
+# step 5: 取排行榜的交集
+# from collections import Counter
+top10_counter = Counter()
+
+for booktop_name in booktop_data:
+    print("Booktop: ", booktop_name)
+    print("Booktop value: ")
+    pprint(booktop_data[booktop_name])
+    top10_counter.update(booktop_data[booktop_name])  # update top10
+    print()
+
+# 取第一名的資料，回傳(資料, 出現次數)
+print('Get Top1')
+pprint(top10_counter.most_common(1)[0])
+top1, top1_count = top10_counter.most_common(1)[0]
+top1_url, top1_name = top1
+print(top1_url)
+print(top1_name)
+print()
+
+# 取前三名的資料，回傳(資料, 出現次數)
+print('Get Top3')
+pprint(top10_counter.most_common(3))
+for topn, topn_count in top10_counter.most_common(3):
+    topn_url, topn_name = topn
+    print(topn_url)
+    print(topn_name)
