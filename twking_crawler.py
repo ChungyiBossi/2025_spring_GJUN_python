@@ -30,7 +30,7 @@ pprint(booktop_data)
 
 # step 5: 取排行榜的交集
 # from collections import Counter
-top10_counter = Counter()
+top10_counter = Counter()  # 建構子 constructor
 
 for booktop_name in booktop_data:
     print("Booktop: ", booktop_name)
@@ -55,3 +55,13 @@ for topn, topn_count in top10_counter.most_common(3):
     topn_url, topn_name = topn
     print(topn_url)
     print(topn_name)
+
+    # 再更深入取得章節資訊
+    r = requests.get(topn_url)
+    r.encoding = 'utf8'
+    topn_soup = BeautifulSoup(r.text, 'html.parser')
+
+    chapter_list = topn_soup.find('div', class_='info-chapters flex flex-wrap')
+    for chapter in chapter_list.find_all('a'):
+        print(chapter['title'], chapter['href'])
+    print()
