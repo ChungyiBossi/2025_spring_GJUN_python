@@ -8,6 +8,16 @@ computex_url = 'https://www.computextaipei.com.tw/zh-tw/exhibitor/show-area-data
 computex_url += '?pageSize=100'
 driver.get(computex_url)
 
+
+# 選頁數
+select_page_size = driver.find_element(By.ID, 'pageSize')
+Select(select_page_size).select_by_value("40")
+
+# 按下確定
+check = driver.find_element(By.XPATH, '//input[@value="確定"]')
+check.click()
+
+
 while True:
     vip_venders = driver.find_elements(By.CLASS_NAME, 'vip')
     print('# of VIP: ', len(vip_venders))
@@ -27,14 +37,6 @@ while True:
 
         print("#tag: ", [tag.text for tag in tags])
         print()
-
-    # 選頁數
-    select_page_size = driver.find_element(By.ID, 'pageSize')
-    Select(select_page_size).select_by_value("40")
-
-    # 按下確定
-    check = driver.find_element(By.XPATH, '//input[@value="確定"]')
-    check.click()
 
     # 按下一頁
     nextpage = driver.find_element(By.XPATH, '//a[@aria-label="下一頁"]')
