@@ -39,11 +39,11 @@ while True:
         print()
 
     # 按下一頁
-    nextpage = driver.find_element(By.XPATH, '//a[@aria-label="下一頁"]')
-    if nextpage:
+    try:
+        nextpage = driver.find_element(By.XPATH, '//a[@aria-label="下一頁"]')
         nextpage.click()
-    else:
+    except Exception as e:
         break
 
-    driver.implicitly_wait(0.5)  # 等待頁面加載
+    driver.implicitly_wait(1)  # 等待頁面加載
 driver.quit()
