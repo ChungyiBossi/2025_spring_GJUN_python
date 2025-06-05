@@ -1,6 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support import expected_conditions as EC
+import time
 
 driver = webdriver.Chrome()
 
@@ -12,12 +15,9 @@ driver.get(computex_url)
 # 選頁數
 select_page_size = driver.find_element(By.ID, 'pageSize')
 Select(select_page_size).select_by_value("40")
-
 # 按下確定
 check = driver.find_element(By.XPATH, '//input[@value="確定"]')
 check.click()
-
-
 while True:
     vip_venders = driver.find_elements(By.CLASS_NAME, 'vip')
     print('# of VIP: ', len(vip_venders))
@@ -44,4 +44,6 @@ while True:
         nextpage.click()
     else:
         break
+
+    driver.implicitly_wait(0.5)  # 等待頁面加載
 driver.quit()
