@@ -8,7 +8,6 @@ import time
 driver = webdriver.Chrome()
 
 computex_url = 'https://www.computextaipei.com.tw/zh-tw/exhibitor/show-area-data/index.html'
-computex_url += '?pageSize=100'
 driver.get(computex_url)
 
 
