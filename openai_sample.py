@@ -6,7 +6,7 @@ def ask_chatgpt(prompt: str) -> str:
     """
     Ask ChatGPT with a given prompt and return the response text.
     """
-    response = client.chat.completions.create(
+    response = client.responses.create(
         model="gpt-4.1",
         input=prompt
     )
