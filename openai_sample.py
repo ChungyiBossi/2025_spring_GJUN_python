@@ -1,5 +1,6 @@
 from openai import OpenAI
-client = OpenAI(api_key="MY_API_KEY")
+from config import OPENAI_API_KEY
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 
 def ask_chatgpt(prompt: str) -> str:
@@ -14,4 +15,4 @@ def ask_chatgpt(prompt: str) -> str:
 
 
 if __name__ == "__main__":
-    ask_chatgpt("幫我生五句話以內的獨角獸床邊故事。")
+    print(ask_chatgpt("幫我生五句話以內的獨角獸床邊故事，要小朋友的口吻，加入哥吉拉。"))
